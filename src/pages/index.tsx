@@ -1,9 +1,33 @@
+import {
+    Routes,
+    Route,
+} from "react-router-dom";
 
-import Test from "../components/Test"
+// Pages
+import HomePage from './home'
+import TeamBuilder from './teamBuilder'
 
+// Components
+import Layout from "components/Layout"
+
+// Styles
+import { GlobalStyle } from './styled'
+
+
+/**
+ *  Renders the app routing. 
+ */
 const App = () => {
     return (
-        <div><Test name={"john"}/></div>
+        <>
+            <GlobalStyle />
+            <Layout >
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="team-builder" element={<TeamBuilder />} />
+                </Routes>
+            </Layout>
+        </>
     )
 }
 
