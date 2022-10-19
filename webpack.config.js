@@ -5,6 +5,12 @@ module.exports = {
     entry: path.resolve(__dirname, './src/index.tsx'),
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
+        alias: {
+            components: path.resolve(__dirname, './src/components/'),
+            colors: path.resolve(__dirname, './src/colors/'),
+            types: path.resolve(__dirname, './src/types/'),
+            images: path.resolve(__dirname, './src/images/'),
+        }
     },
     module: {
         rules: [
