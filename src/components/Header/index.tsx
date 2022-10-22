@@ -8,10 +8,14 @@ import Football from 'images/football.png'
 const PageHeader = () => {
     return (
         <Header>
-            <div>
-                <img src={Football} alt='Football' />
-                <p>Phootball</p>
-            </div>
+            <Link to={'/'} >
+                <div>
+
+                    <img src={Football} alt='Football' />
+                    <p>Phootball</p>
+
+                </div>
+            </Link>
             <nav>
                 <ul>
                     <li>

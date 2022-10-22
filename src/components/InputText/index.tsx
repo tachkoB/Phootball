@@ -7,8 +7,9 @@ interface Props {
     className?: string;
     onHandleChange: (text: string) => void
     value?: string
+    placeholder?: string
 }
-const InputText: FC<Props> = ({ className, onHandleChange, value }) => {
+const InputText: FC<Props> = ({ className, onHandleChange, value, placeholder }) => {
     /**
      * Handles input state
      * 
@@ -19,7 +20,7 @@ const InputText: FC<Props> = ({ className, onHandleChange, value }) => {
     }
 
     return (
-        <Input value={value} onChange={handleChange} className={className} type='text' />
+        <Input value={value} onChange={handleChange} className={className} placeholder={placeholder} type='text' />
     )
 }
 

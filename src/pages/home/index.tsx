@@ -8,7 +8,9 @@ import Table from "components/Table"
 import { PlayerContext } from "contexts/players"
 
 // Styles
-import { Section, Input, Container } from "./styled"
+import { Section, Container, Input } from "../styled"
+
+// Types
 import { Player } from "types/index"
 
 /**
@@ -54,7 +56,7 @@ const HomePage = () => {
         <Section>
             <h1>Find your teammate</h1>
             <Container>
-                <Input onHandleChange={debouncedChangeHandler} />
+                <Input onHandleChange={debouncedChangeHandler} placeholder={'Search by name, club or nationality..'} />
                 <Table players={matchingPlayers} />
             </Container>
         </Section>

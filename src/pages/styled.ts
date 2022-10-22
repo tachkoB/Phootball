@@ -1,5 +1,8 @@
 
-import { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
+
+// Components
+import InputText from "components/InputText";
 
 // Colors
 import { colors } from 'colors/index'
@@ -18,3 +21,20 @@ body {
     background-color: ${colors.primary};
 }
 `
+
+export const Section = styled.section`
+   padding: 2rem;
+   height: 40rem;
+
+    > h1 {
+        font-size: 3rem;
+        text-align: center;
+    }
+`
+export const Container = styled.div`
+    padding: 2rem;
+`
+
+export const Input = styled(InputText)`
+    width: 33%;
+    `

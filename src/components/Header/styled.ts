@@ -11,17 +11,24 @@ export const Header = styled.header`
   align-items: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 
-  > div {
-    display: flex;
+  > a {
+    &:hover {
+    border-bottom: 0;
+  }
   }
 
-  > div > img {
+  > a > div {
+    display: flex;
+    align-items: center;
+  }
+
+  > a > div > img {
     width: 3rem;
     border-radius: 50%;
     margin-left: 1rem;
   }
 
-  > div > p {
+  > a > div > p {
     font-size: 3rem;
     margin-left: 1rem;
   }
@@ -33,7 +40,6 @@ export const Header = styled.header`
   }
 
   > nav > ul > li {
-  
     margin-left: 1rem;
     font-size: 1.5rem;
   }
