@@ -33,10 +33,8 @@ export const Section = styled.section`
 `
 export const Container = styled.div`
     padding: 2rem;
-
-    
 `
 
 export const Input = styled(InputText)`
     width: 33%;
-    `
+`

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 // Button
 import PrimaryButton from "components/Button";
+import InputText from "components/InputText";
 
 export const Section = styled.section`
     padding: 2rem;
@@ -19,3 +20,9 @@ export const Section = styled.section`
 `
 
 export const SubmitButton = styled(PrimaryButton)``
+
+export const Error = styled.p`
+    color: red;
+    margin-top: 1rem;
+    font-size: 1rem;
+`
