@@ -1,5 +1,9 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 
+// Components
+import Avatar from 'components/Avatar'
+
+// Styles
 import { Wrapper } from './styled'
 
 interface Props {
@@ -7,16 +11,30 @@ interface Props {
 }
 
 const TableRow: FC<Props> = ({ player }) => {
-    const { name, nationality, age, club, photo, score, value } = player
+    const { name, nationality, age, club, photo, overall, value } = player
     return (
         <Wrapper>
-            <div>{name}</div>
-            <div>{nationality}</div>
-            <div>{age}</div>
-            <div>{club}</div>
-            <div>{photo}</div>
-            <div>{score}</div>
-            <div>{value}</div>
+            <div>
+                <Avatar photo={photo} />
+                <span>
+                    {name}
+                </span>
+            </div>
+            <div>
+                <span>{age}</span>
+            </div>
+            <div>
+                <span>{nationality}</span>
+            </div>
+            <div>
+                <span>{club}</span>
+            </div>
+            <div>
+                <span>{overall}</span>
+            </div>
+            <div>
+                <span>{value}</span>
+            </div>
         </Wrapper>
     )
 }

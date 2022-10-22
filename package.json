@@ -9,8 +9,10 @@
     "build": "webpack --mode production"
   },
   "dependencies": {
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-papaparse": "^4.1.0",
     "react-router-dom": "6",
     "styled-components": "^5.3.6"
   },
@@ -20,6 +22,7 @@
     "@babel/preset-env": "^7.19.4",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
+    "@types/lodash": "^4.14.186",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "@types/styled-components": "^5.1.26",

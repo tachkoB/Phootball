@@ -1,29 +1,25 @@
+import { FC } from 'react'
+
 // Components
 import TableRow from 'components/TableRow'
+import TableHead from 'components/TableHead'
 
 // Styles
 import { Container } from './styled'
 
-const mockData = {
-    name: 'john', nationality: "Hr", age: 22, club: "Dinamo", photo: 'sda', score: 72, value: 23234
+// Types
+import { Player } from 'types/index'
+
+
+interface Props {
+    players: Player[]
 }
-const mockDataS = {
-    name: 'johnsasdasdasd', nationality: "Hrasdasd", age: 22, club: "Dinaasdasdasdasdasdmo", photo: 'sda', score: 72, value: 23234
-}
-const Table = () => {
+const Table: FC<Props> = ({ players }) => {
+
     return (
         <Container>
-            <div>
-                <div>Photo</div>
-                <div>Name</div>
-                <div>Age</div>
-                <div>Nationality</div>
-                <div>Club</div>
-                <div>Score</div>
-                <div>Value</div>
-            </div>
-            <TableRow player={mockData} />
-            <TableRow player={mockDataS} />
+            <TableHead />
+            {players.map(player => <TableRow player={player} key={player.ID} />)}
         </Container>
     )
 }

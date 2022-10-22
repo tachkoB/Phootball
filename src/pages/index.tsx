@@ -1,3 +1,4 @@
+import { useEffect, useContext } from "react";
 import {
     Routes,
     Route,
@@ -10,14 +11,24 @@ import TeamBuilder from './teamBuilder'
 // Components
 import Layout from "components/Layout"
 
+// Context
+import { PlayerContext } from "contexts/players";
+
 // Styles
 import { GlobalStyle } from './styled'
 
-
+// Fetchers
+import { fetchAllPlayers } from "fetchers/index";
 /**
  *  Renders the app routing. 
  */
 const App = () => {
+    const { setPlayers } = useContext(PlayerContext)
+
+    useEffect(() => {
+        fetchAllPlayers().then(data => setPlayers(data))
+    }, [])
+
     return (
         <>
             <GlobalStyle />

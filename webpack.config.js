@@ -10,6 +10,8 @@ module.exports = {
             colors: path.resolve(__dirname, './src/colors/'),
             types: path.resolve(__dirname, './src/types/'),
             images: path.resolve(__dirname, './src/images/'),
+            fetchers: path.resolve(__dirname, './src/fetchers/'),
+            contexts: path.resolve(__dirname, './src/contexts/'),
         }
     },
     module: {

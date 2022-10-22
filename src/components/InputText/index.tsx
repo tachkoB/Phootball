@@ -6,7 +6,7 @@ import { Input } from './styled'
 interface Props {
     className?: string;
     onHandleChange: (text: string) => void
-    value: string
+    value?: string
 }
 const InputText: FC<Props> = ({ className, onHandleChange, value }) => {
     /**

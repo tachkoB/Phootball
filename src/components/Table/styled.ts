@@ -9,18 +9,20 @@ export const Container = styled.div`
 
     > div > * { 
         color: black;
-        height: 3rem;
         padding: 0.5rem;
-        border: 1px solid black;
         font-size: 1.5rem;
+    }
+
+    > div > div > span { 
+        color: black;
         overflow: hidden;
         text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     > div {
         display: grid;
-        grid-template-columns: repeat(7, calc(100% / 7)); 
-     
+        grid-template-columns: repeat(6, calc(100% / 6)); 
     }
 
 `
