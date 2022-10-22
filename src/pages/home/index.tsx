@@ -5,7 +5,7 @@ import { debounce } from 'lodash'
 import Table from "components/Table"
 
 // Contexts
-import { PlayerContext } from "contexts/players"
+import { PlayerContext, PlayerState } from "contexts/players"
 
 // Styles
 import { Section, Container, Input } from "../styled"
@@ -19,11 +19,15 @@ import { Player } from "types/index"
  * @param players List of players
  * @param query   Query to filter by
  */
-function findMatchingPlayers(players: Player[], query: string): Player[] {
-    if (!players.length) {
-        return []
-    }
-    return players.filter(player => (
+function findMatchingPlayers(players: PlayerState, query: string): Player[] {
+    const keys = Object.keys(players) as Array<keyof PlayerState>
+
+    const flattenedMap = keys.reduce((a, b) => {
+        return [...a, ...players[b]]
+    }, [] as Player[])
+
+
+    return flattenedMap.filter(player => (
         player.name.toLowerCase().includes(query.toLowerCase())
         || player.club.toLowerCase().includes(query.toLowerCase())
         || player.nationality.toLowerCase().includes(query.toLowerCase())
