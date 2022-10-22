@@ -3,6 +3,9 @@ import { FC } from 'react'
 // Components
 import Avatar from 'components/Avatar'
 
+// Utils
+import { nFormatter } from 'utils/formatters'
+
 // Styles
 import { Wrapper } from './styled'
 
@@ -33,7 +36,7 @@ const TableRow: FC<Props> = ({ player }) => {
                 <span>{overall}</span>
             </div>
             <div>
-                <span>{value}</span>
+                <span>€{nFormatter(value)}</span>
             </div>
         </Wrapper>
     )

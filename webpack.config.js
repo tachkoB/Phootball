@@ -15,6 +15,7 @@ module.exports = {
             images: path.resolve(__dirname, './src/images/'),
             fetchers: path.resolve(__dirname, './src/fetchers/'),
             contexts: path.resolve(__dirname, './src/contexts/'),
+            utils: path.resolve(__dirname, './src/utils/'),
         }
     },
     module: {

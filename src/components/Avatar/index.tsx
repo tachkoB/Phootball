@@ -4,7 +4,7 @@ import { FC, useState } from 'react'
 import { Image } from './styled'
 
 // Images
-import fallback from 'images/empty_avatar.png'
+import fallback from 'images/empty_avatar.jpeg'
 
 interface Props {
     photo: string

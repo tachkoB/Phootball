@@ -9,14 +9,17 @@ import { Container, Wrapper, Field } from './styled'
 // Images
 import Pitch from 'images/soccer-field.jpg'
 
+interface Props {
+    isLoading: boolean
+}
 
-const FootballField: FC = () => {
+const FootballField: FC<Props> = ({ isLoading }) => {
     return (
         <Container>
             <Wrapper>
                 <img src={Pitch} />
                 <Field>
-                    <Player />
+                    <Player isLoading={isLoading} />
                     <Player />
                     <Player />
                     <Player />

@@ -32,22 +32,22 @@ export const Field = styled.div`
     ;
 
     > div:nth-child(1) {
-        grid-area: gk
+        grid-area: gk;
     }
     > div:nth-child(2) {
-        grid-area: lb
+        grid-area: lb;
     }
     > div:nth-child(3) {
-        grid-area: rb
+        grid-area: rb;
     }
     > div:nth-child(4) {
-        grid-area: lmf
+        grid-area: lmf;
     }
     > div:nth-child(5) {
-        grid-area: cam
+        grid-area: cam;
     }
     > div:nth-child(6) {
-        grid-area: rmf
+        grid-area: rmf;
     }
     > div:nth-child(7) {
         grid-area: lwf
@@ -65,14 +65,16 @@ export const Field = styled.div`
         grid-area: la
     }
 
+    > div:not(:first-child) {
+        justify-self: baseline;
+    }
+
     > div {
         align-self: center;
     }
     
-    >div:first-child {
+    > div:first-child {
         justify-self: center;
     }
-    
-
 `
 

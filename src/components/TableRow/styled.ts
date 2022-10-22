@@ -20,4 +20,8 @@ export const Wrapper = styled.div`
         align-items: center;
 
     }
+
+    > div > img {
+        margin-right: 1rem;
+    }
 `
