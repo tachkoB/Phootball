@@ -7,13 +7,13 @@ const DEFENSE = ['LB','RB','LWB','RWB']
 const MIDFIELD = ['CB','LCB','RCB','CDM','LDM','RDM','CM','LCM','RCM','LM','RM']
 const ATTACK = ['CAM','LAM','RAM','LWF','RWF','CF','LCF','RCF']
 
-const isGoalKeeper = (position: string) => position.toUpperCase() === 'GK'
+export const isGoalKeeper = (position: string) => position.toUpperCase() === 'GK'
 
-const isDefender = (position: string) => DEFENSE.some(role=> role === position)
+export const isDefender = (position: string) => DEFENSE.some(role=> role === position)
 
-const isMidfielder = (position: string) => MIDFIELD.some(role=> role === position)
+export const isMidfielder = (position: string) => MIDFIELD.some(role=> role === position)
 
-const isAttack = (position:string) => ATTACK.some(role => role === position)
+export const isAttack = (position:string) => ATTACK.some(role => role === position)
 
 export function mapPlayersPerPosition(players: Player[]): PlayerState {
     if (!players.length) {

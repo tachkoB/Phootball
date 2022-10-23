@@ -1,5 +1,4 @@
 import { FormEvent, useContext, useState } from "react"
-import { flushSync } from "react-dom";
 
 // Components
 import FootballField from "components/FootballField"
@@ -29,6 +28,7 @@ function handleError(budget: string) {
     return ''
 }
 
+
 export default function TeamBuilder() {
     const { players } = useContext(PlayerContext)
     const [budget, setBudget] = useState('')
@@ -51,6 +51,8 @@ export default function TeamBuilder() {
         worker.postMessage({ players, budget: Number(budget) })
 
         worker.onmessage = ({ data: { success, team } }) => {
+            console.log('whats ym tetam', team)
+            console.log('is scucesss', success)
             setIsLoading(false)
             if (success) {
                 setTeam(team)

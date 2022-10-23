@@ -1,80 +1,168 @@
 import { PlayerState } from "contexts/players";
+import { Player } from "types/index";
+import { isAttack, isDefender, isGoalKeeper, isMidfielder } from "utils/mappers";
 
-self.onmessage = ({ data }: { data:{ players: PlayerState, budget: number }}) => {
-  const { budget, players } = data;
-  console.log('triggered');
+self.onmessage = ({ data }: { data: { players: PlayerState, budget: number } }) => {
+    const { budget, players } = data;
+    // console.log(players.AT.length, players.DF.length, players.MF.length, players.GK.length)
+    const length = players.AT.length + players.DF.length + players.MF.length + players.GK.length
 
-  let maxTeam = [
-      players.GK[0],
-      ...players.DF.splice(0, 2),
-      ...players.MF.splice(0, 3),
-      ...players.AT.splice(0, 5)
-  ]
+    let initialTeam = [
+        [players.GK[0]],
+        [...players.DF.slice(0, 2)],
+        [...players.MF.slice(0, 3)],
+        [...players.AT.slice(0, 5)]
+    ]
+
+    let nextBestTeam = [
+        [players.GK[1]],
+        [...players.DF.slice(2, 4)],
+        [...players.MF.slice(3, 6)],
+        [...players.AT.slice(5, 10)]
+    ]
 
 
-  let sum = maxTeam.reduce((a, b) => {
-      return a + b.value
-  }, 0)
 
-  const indices = {
-      GK: 1,
-      DF: 3,
-      MF: 4,
-      AT: 6
-  }
+    let sum = 0;
 
-  const max = Math.max(players.AT.length, players.DF.length, players.MF.length, players.GK.length)
+    initialTeam.forEach(ar => {
+        const s = ar.reduce((a, b) => {
+            return a + b.value
+        }, 0)
 
-    for (let i = 0; i < max; i++) {
-      let changed = false;
-      for (let i = 0; i < 11; i++) {
-          if (i === 0) {
-              if (players.GK[indices.GK]) {
-                  sum += Number(players.GK[indices.GK].value - maxTeam[i].value);
-                  maxTeam[i] = players.GK[indices.GK];
-                  indices.GK += 1;
-                  changed = true;
-              }
-          }
-          else if (i == 1 || i == 2) {
-              if (players.DF[indices.DF]) {
-                  sum += Number(players.DF[indices.DF].value - maxTeam[i].value)
-                  maxTeam[i] = players.DF[indices.DF];
-                  indices.DF += 1;
-                  changed = true;
-              }
-          }
+        sum += s;
+    })
 
-          else if (i == 3 || i == 4 || i == 5) {
-              if (players.MF[indices.MF]) {
-                  sum += Number(players.MF[indices.MF].value - maxTeam[i].value)
-                  maxTeam[i] = players.MF[indices.MF];
-                  indices.MF += 1;
-                  changed = true;
-              }
-          }
 
-          else if (i > 5) {
-              if (players.AT[indices.AT]) {
-                  sum += Number(players.AT[indices.AT].value - maxTeam[i].value)
-                  maxTeam[i] = players.AT[indices.AT];
-                  indices.AT += 1;
-                  changed = true;
-              }
-          }
+    const indices = {
+        GK: 1,
+        DF: 4,
+        MF: 6,
+        AT: 10
+    }
 
-          if (budget >= sum) break
-      }
+    let result: Player[] = []
 
-      if (budget >= sum || changed === false) break
-  }
+    const getNextPlayer = (index: number, player: Player) => {
+        if (isGoalKeeper(player.position)) {
+            if (players.GK[indices.GK + 1]) {
+                indices.GK += 1;
+                return players.GK[indices.GK]
+            }
+        }
+        if (isDefender(player.position)) {
+            if (players.DF[indices.DF + 1]) {
+                indices.DF += 1;
+                return players.DF[indices.DF]
+            }
+        }
 
+        if (isMidfielder(player.position)) {
+            if (players.MF[indices.MF + 1]) {
+                indices.MF += 1;
+                return players.MF[indices.MF]
+            }
+        }
+
+        if (isAttack(player.position)) {
+            if (players.AT[indices.AT + 1]) {
+                indices.AT += 1;
+                return players.AT[indices.AT]
+            }
+        }
+    }
+
+    const getIndices = (team: Array<Player[]>, nextTeam: Array<Player[]>) => {
+        const memo = {
+            arrIndex: null,
+            current: null,
+            next: null,
+            value: null
+        }
+
+        nextTeam.forEach((arr, i) => {
+            arr.forEach((player, j) => {
+                team[i].forEach((current, k) => {
+                    const res = (((current.overall || 1) / (current.value || 1)) - ((player.overall || 1) / (player.value || 1)))
+
+                    if (!memo.value || res < memo.value) {
+                        memo.value = res
+                        memo.arrIndex = i
+                        memo.current = k
+                        memo.next = j
+                    }
+                })
+            })
+
+        })
+
+        return memo
+    }
+
+
+    // console.log(initialTeam, 'init team')
+    // console.log(nextBestTeam, 'next team')
+
+
+    for (let i = 0; i < length; i++) {
+        // console.log(indices)
+        // if (sum <= budget) break
+
+        initialTeam = initialTeam.filter(x => x !== undefined)
+        nextBestTeam = nextBestTeam.reduce((a, b) => {
+            const l = b.filter((s) => s !== undefined)
+            a.push(l)
+            return a
+        }, []).filter(x => x !== undefined)
+
+        if (!nextBestTeam[0].length && !nextBestTeam[1].length && !nextBestTeam[2].length) {
+            break
+        }
+
+
+        console.log(initialTeam, 'initial team')
+        console.log(nextBestTeam, 'next team')
+        const { current, next, arrIndex } = getIndices(initialTeam, nextBestTeam)
+
+
+        initialTeam[arrIndex!][current!] = nextBestTeam[arrIndex!][next!]
+
+        sum += initialTeam[arrIndex!][current!].value
+
+        console.log(indices)
+
+        nextBestTeam[arrIndex!][next] = getNextPlayer(next, nextBestTeam[arrIndex!][next]);
+
+        // console.log({ current, next, arrIndex })
+
+
+
+        // const weights = initialTeam.map((val, i) => (val.overall || 1 / val.value || 1) - (nextBestTeam[i].overall || 1 / nextBestTeam[i].value || 1))
+        // const min = Math.min(...weights);
+        // const index = weights.indexOf(min);
+
+        //  console.log(sum, 'sum')
+
+        // sum += (nextBestTeam[index].value - initialTeam[index].value);
+        // initialTeam[index] = nextBestTeam[index];
+        // nextBestTeam[index] = getNextPlayer(index, initialTeam[index]);
+    }
+
+    const x = [...result, ...initialTeam]
+
+    const r: Player[] = []
+
+    initialTeam.forEach(arr => {
+        r.push(...arr)
+    })
+    console.log(r, 'the final team')
 
     self.postMessage({
-      team: maxTeam,
-      success: budget >= sum,
-      sum
-    });
-  };
+        team: r,
+        success: budget >= sum,
 
-  export {}
+    });
+
+};
+
+export { }

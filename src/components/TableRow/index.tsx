@@ -6,15 +6,18 @@ import Avatar from 'components/Avatar'
 // Utils
 import { nFormatter } from 'utils/formatters'
 
+// Types
+import { Player } from 'types/index'
+
 // Styles
 import { Wrapper } from './styled'
 
 interface Props {
-    player: any
+    player: Player
 }
 
 const TableRow: FC<Props> = ({ player }) => {
-    const { name, nationality, age, club, photo, overall, value } = player
+    const { name, nationality, age, club, photo, overall, value, position } = player
     return (
         <Wrapper>
             <div>
