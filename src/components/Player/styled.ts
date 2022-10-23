@@ -5,8 +5,8 @@ import Avatar from "components/Avatar";
 
 export const Img = styled(Avatar)`
     border-radius: 50%;
-    height: 3rem;
-    width: 3rem;
+    height: 5rem;
+    width: 5rem;
 `
 
 
@@ -29,7 +29,13 @@ const pulse = keyframes`
         border-radius: 50%;
 	}
 `
-
 export const Container = styled.div<{isLoading:boolean}>`
-    ${({isLoading})=> isLoading && css`animation: ${pulse} 2s infinite;`}
+	cursor: pointer;
+	background-color: white;
+	padding: 0.5rem;
+	opacity: 0.8;
+	width: 8rem;
+	> * {
+		color: black;
+	}
 `

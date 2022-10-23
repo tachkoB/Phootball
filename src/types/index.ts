@@ -6,7 +6,7 @@ export interface Player {
     nationality: string
     overall: number
     position: string
-    value: string
+    value: number
     photo: string
 }
 
