@@ -81,10 +81,10 @@ self.onmessage = ({ data }: { data: { players: PlayerState, budget: number } }) 
                 }
             }
 
-            if (budget >= sum || changed === false) break
+            if (budget >= sum) break
         }
 
-        if (budget >= sum) break
+        if (budget >= sum || changed === false) break
     }
 
 
