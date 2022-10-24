@@ -23,9 +23,10 @@ self.onmessage = ({ data }: { data: { players: PlayerState, budget: number } }) 
         AT: 6
     }
 
+
     const max = Math.max(players.AT.length, players.DF.length, players.MF.length, players.GK.length)
 
-    for (let i = 0; i < max; i++) {
+    for (let j = 0; j < max; j++) {
         let changed = false;
         for (let i = 0; i < 11; i++) {
             if (i === 0) {
@@ -38,17 +39,25 @@ self.onmessage = ({ data }: { data: { players: PlayerState, budget: number } }) 
             }
             else if (i == 1 || i == 2) {
                 if (players.DF[indices.DF]) {
-                    sum += Number(players.DF[indices.DF].value - maxTeam[i].value)
-                    maxTeam[i] = players.DF[indices.DF];
+                    const defenders = maxTeam.slice(1, 3)
+                    const values = defenders.map(pl => pl.value)
+                    const min = Math.max(...values)
+                    const worst = defenders.find(pl => pl.value === min)
+                    sum += Number(players.DF[indices.DF].value - worst.value)
+                    maxTeam = maxTeam.map(pl => pl.ID === worst!.ID ? players.DF[indices.DF] : pl)
                     indices.DF += 1;
                     changed = true;
                 }
             }
 
-            else if (i == 3 || i == 4 || i == 5) {
+            else if (i === 3 || i === 4 || i === 5) {
                 if (players.MF[indices.MF]) {
-                    sum += Number(players.MF[indices.MF].value - maxTeam[i].value)
-                    maxTeam[i] = players.MF[indices.MF];
+                    const defenders = maxTeam.slice(3, 6)
+                    const values = defenders.map(pl => pl.value)
+                    const min = Math.max(...values)
+                    const player = defenders.find(pl => pl.value === min)
+                    sum += Number(players.MF[indices.MF].value - player.value)
+                    maxTeam = maxTeam.map(pl => pl.ID === player!.ID ? players.MF[indices.MF] : pl)
                     indices.MF += 1;
                     changed = true;
                 }
@@ -56,8 +65,12 @@ self.onmessage = ({ data }: { data: { players: PlayerState, budget: number } }) 
 
             else if (i > 5) {
                 if (players.AT[indices.AT]) {
-                    sum += Number(players.AT[indices.AT].value - maxTeam[i].value)
-                    maxTeam[i] = players.AT[indices.AT];
+                    const defenders = maxTeam.slice(6, 11)
+                    const values = defenders.map(pl => pl.value)
+                    const min = Math.max(...values)
+                    const player = defenders.find(pl => pl.value === min)
+                    sum += Number(players.AT[indices.AT].value - player.value)
+                    maxTeam = maxTeam.map(pl => pl.ID === player!.ID ? players.AT[indices.AT] : pl)
                     indices.AT += 1;
                     changed = true;
                 }
@@ -66,7 +79,7 @@ self.onmessage = ({ data }: { data: { players: PlayerState, budget: number } }) 
             if (budget >= sum) break
         }
 
-        if (budget >= sum || changed === false) break
+        if (budget >= sum) break
     }
 
 
