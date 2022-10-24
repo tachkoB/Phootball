@@ -2,6 +2,7 @@ import { useEffect, useContext } from "react";
 import {
     Routes,
     Route,
+    Navigate,
 } from "react-router-dom";
 
 // Pages
@@ -36,6 +37,7 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="team-builder" element={<TeamBuilder />} />
+                    <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
             </Layout>
         </>
