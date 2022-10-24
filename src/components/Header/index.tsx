@@ -5,6 +5,9 @@ import { Header, Link } from './styled'
 import Football from 'images/football.png'
 
 
+/**
+ *  App geader
+ */
 const PageHeader = () => {
     return (
         <Header>

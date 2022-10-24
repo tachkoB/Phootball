@@ -13,6 +13,9 @@ interface Props {
 
 /**
  * Renders the image provided, with a fallback image in case the link is broken
+ * 
+ * @param photo     Photo to render 
+ * @param className Class name
  */
 const Avatar: FC<Props> = ({ photo, className }) => {
     const [img, setImg] = useState(photo)

@@ -14,8 +14,13 @@ import { Player } from 'types/index'
 interface Props {
     players: Player[]
 }
-const Table: FC<Props> = ({ players }) => {
 
+/**
+ * Renders the table with players
+ * 
+ * @param players   Players to render 
+ */
+const Table: FC<Props> = ({ players }) => {
     return (
         <Container>
             <TableHead />

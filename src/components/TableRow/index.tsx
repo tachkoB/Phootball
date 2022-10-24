@@ -16,6 +16,11 @@ interface Props {
     player: Player
 }
 
+/**
+ * Renders the table row with player data
+ * 
+ * @param player Player data 
+ */
 const TableRow: FC<Props> = ({ player }) => {
     const { name, nationality, age, club, photo, overall, value, position } = player
     return (

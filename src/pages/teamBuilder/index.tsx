@@ -29,6 +29,9 @@ function handleError(budget: string) {
 }
 
 
+/**
+ * Renders the page to build football teams
+ */
 export default function TeamBuilder() {
     const { players } = useContext(PlayerContext)
     const [budget, setBudget] = useState('')
@@ -36,6 +39,9 @@ export default function TeamBuilder() {
     const [isError, setError] = useState('')
     const [team, setTeam] = useState<Player[]>([])
 
+    /**
+     * Submits the form and starts the web worker
+     */
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const errorMessage = handleError(budget)
@@ -51,8 +57,6 @@ export default function TeamBuilder() {
         worker.postMessage({ players, budget: Number(budget) })
 
         worker.onmessage = ({ data: { success, team } }) => {
-            console.log('whats ym tetam', team)
-            console.log('is scucesss', success)
             setIsLoading(false)
             if (success) {
                 setTeam(team)

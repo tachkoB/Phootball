@@ -30,6 +30,10 @@ export const initialState = {
     rest: []
 }
 
+
+/**
+ * Player Context
+ */
 const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     const [players, setPlayers] = useState<PlayerState>(initialState)
 

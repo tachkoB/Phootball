@@ -11,6 +11,14 @@ interface Props {
 }
 
 
+/**
+ * Renders the primary button
+ * 
+ * @param onClick       Click hanlder
+ * @param text          Button text
+ * @param className     Class name
+ * @param type          Button type
+ */
 const PrimaryButton: FC<Props> = ({ onClick, text, className, type }) => {
     return (
         <Button className={className} onClick={onClick} type={type}>{text}</Button>

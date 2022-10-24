@@ -30,9 +30,20 @@ export const initialState = {
     photo: ''
 }
 
+/**
+ * Renders the football field with players
+ * 
+ * @param isLoading  Loading state 
+ * @param team       Team to render 
+ */
 const FootballField: FC<Props> = ({ isLoading, team }) => {
     const [activePlayer, setActivePlayer] = useState<Player>(initialState)
 
+    /**
+     * Handles setting the active player for the tooltip
+     * 
+     * @param player Player to render
+     */
     const handleSetActivePlayer = (player: Player) => {
         setActivePlayer(player)
     }

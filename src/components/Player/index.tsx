@@ -19,6 +19,13 @@ interface Props {
 }
 
 
+/**
+ * Renders the player data
+ * 
+ * @param isLoading                 Loading state
+ * @param player                    Player to render
+ * @param handleSetActivePlayer     Handler to set the active player 
+ */
 const PlayerIcon: FC<Props> = ({ isLoading, player, handleSetActivePlayer }) => {
     return (
         <>

@@ -2,6 +2,9 @@
 // Styles
 import { Row } from "./styled"
 
+/**
+ * Renders the head table row
+ */
 const TableHead = () => {
     return (
         <Row>

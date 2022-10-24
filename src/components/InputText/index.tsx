@@ -9,6 +9,15 @@ interface Props {
     value?: string
     placeholder?: string
 }
+
+/**
+ * 
+ * 
+ * @param className         Class name
+ * @param onHandleChange    Input handler
+ * @param value             Input value
+ * @param placeholder       Input placeholder
+ */
 const InputText: FC<Props> = ({ className, onHandleChange, value, placeholder }) => {
     /**
      * Handles input state

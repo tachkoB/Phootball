@@ -19,7 +19,6 @@ interface Props {
  * Renders a tooltip with the information about the player
  *
  * @param player    Player data to render
- * @returns
  */
 const PlayerTooltip: FC<Props> = ({ player }) => {
     const { name, nationality, age, club, overall, position, value } = player;
