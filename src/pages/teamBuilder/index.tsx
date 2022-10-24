@@ -28,7 +28,6 @@ function handleError(budget: string) {
     return ''
 }
 
-
 /**
  * Renders the page to build football teams
  */
@@ -68,8 +67,6 @@ export default function TeamBuilder() {
 
     const isDataHere = players.GK.length
 
-
-
     return (
 
         <Section>
@@ -80,9 +77,7 @@ export default function TeamBuilder() {
                     <SubmitButton text={'Search'} type={'submit'} />
                 </form>
                 {isError && <Error>{isError}</Error>}
-
                 <FootballField team={team} isLoading={isLoading} />
-
             </Container>
         </Section>
     )
