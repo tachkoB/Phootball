@@ -66,9 +66,12 @@ export default function TeamBuilder() {
         };
     }
 
-
+    if (!players.GK.length) {
+        return null
+    }
 
     return (
+
         <Section>
             <h1>Team builder</h1>
             <Container>
