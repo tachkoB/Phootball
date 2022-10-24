@@ -8,6 +8,7 @@ interface Props {
     onHandleChange: (text: string) => void
     value?: string
     placeholder?: string
+    disabled?: boolean
 }
 
 /**
@@ -17,8 +18,9 @@ interface Props {
  * @param onHandleChange    Input handler
  * @param value             Input value
  * @param placeholder       Input placeholder
+ * @param disabled          Input state
  */
-const InputText: FC<Props> = ({ className, onHandleChange, value, placeholder }) => {
+const InputText: FC<Props> = ({ className, onHandleChange, value, placeholder, disabled }) => {
     /**
      * Handles input state
      * 
@@ -29,7 +31,7 @@ const InputText: FC<Props> = ({ className, onHandleChange, value, placeholder })
     }
 
     return (
-        <Input value={value} onChange={handleChange} className={className} placeholder={placeholder} type='text' />
+        <Input disabled={disabled} value={value} onChange={handleChange} className={className} placeholder={placeholder} type='text' />
     )
 }
 

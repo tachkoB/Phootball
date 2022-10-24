@@ -66,9 +66,9 @@ export default function TeamBuilder() {
         };
     }
 
-    if (!players.GK.length) {
-        return null
-    }
+    const isDataHere = players.GK.length
+
+
 
     return (
 
@@ -76,7 +76,7 @@ export default function TeamBuilder() {
             <h1>Team builder</h1>
             <Container>
                 <form onSubmit={handleSubmit}>
-                    <Input onHandleChange={setBudget} value={budget} placeholder={'Your budget'} />
+                    <Input onHandleChange={setBudget} value={budget} disabled={!isDataHere} placeholder={'Your budget'} />
                     <SubmitButton text={'Search'} type={'submit'} />
                 </form>
                 {isError && <Error>{isError}</Error>}
