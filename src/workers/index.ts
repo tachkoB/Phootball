@@ -1,6 +1,7 @@
 import { PlayerState } from "contexts/players";
 
 self.onmessage = ({ data }: { data: { players: PlayerState, budget: number } }) => {
+
     const { budget, players } = data;
 
     let maxTeam = [

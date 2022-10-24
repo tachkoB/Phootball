@@ -38,7 +38,7 @@ export default function TeamBuilder() {
     const [isLoading, setIsLoading] = useState(false)
     const [isError, setError] = useState('')
     const [team, setTeam] = useState<Player[]>([])
-
+    console.log(process.env.NODE_ENV)
     /**
      * Submits the form and starts the web worker
      */
