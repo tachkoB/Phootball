@@ -3,16 +3,20 @@ import { PlayerState } from "contexts/players";
 // Types
 import { Player } from "types/index";
 
+/**
+ * Returns the player with the highest value 
+ * 
+ * @param arr List of players
+ */
 const getPlayer = (arr: Player[]): Player => {
     const values = arr.map(pl => pl.value)
-    const min = Math.max(...values)
-    const player = arr.find(pl => pl.value === min)
+    const max = Math.max(...values)
+    const player = arr.find(pl => pl.value === max)
 
     return player as Player
 }
 
 self.onmessage = ({ data }: { data: { players: PlayerState, budget: number } }) => {
-
     const { budget, players } = data;
 
     let maxTeam = [
@@ -21,7 +25,6 @@ self.onmessage = ({ data }: { data: { players: PlayerState, budget: number } }) 
         ...players.MF.splice(0, 3),
         ...players.AT.splice(0, 5)
     ]
-
 
     let sum = maxTeam.reduce((a, b) => {
         return a + b.value
@@ -33,7 +36,6 @@ self.onmessage = ({ data }: { data: { players: PlayerState, budget: number } }) 
         MF: 4,
         AT: 6
     }
-
 
     const max = Math.max(players.AT.length, players.DF.length, players.MF.length, players.GK.length)
 
@@ -48,7 +50,7 @@ self.onmessage = ({ data }: { data: { players: PlayerState, budget: number } }) 
                     changed = true;
                 }
             }
-            else if (i == 1 || i == 2) {
+            if (i == 1 || i == 2) {
                 if (players.DF[indices.DF]) {
                     const defenders = maxTeam.slice(1, 3)
                     const player = getPlayer(defenders)
@@ -59,7 +61,7 @@ self.onmessage = ({ data }: { data: { players: PlayerState, budget: number } }) 
                 }
             }
 
-            else if (i === 3 || i === 4 || i === 5) {
+            if (i === 3 || i === 4 || i === 5) {
                 if (players.MF[indices.MF]) {
                     const midfielders = maxTeam.slice(3, 6)
                     const player = getPlayer(midfielders)
@@ -70,7 +72,7 @@ self.onmessage = ({ data }: { data: { players: PlayerState, budget: number } }) 
                 }
             }
 
-            else if (i > 5) {
+            if (i > 5) {
                 if (players.AT[indices.AT]) {
                     const attackers = maxTeam.slice(6, 11)
                     const player = getPlayer(attackers)
