@@ -3,7 +3,7 @@ import { PlayerState } from "contexts/players";
 // Types
 import { Player } from "types/index";
 
-interface PlayerCount extends Player {
+interface PlayerWithCount extends Player {
     maxed?: boolean
 }
 
@@ -47,7 +47,8 @@ self.onmessage = ({ data }: { data: { players: PlayerState, budget: number } }) 
     }
 
 
-    function findTeamForBudget(currentTeam: PlayerCount[], sum: number, budget: number): [Player[], number] {
+
+    function findTeamForBudget(currentTeam: PlayerWithCount[], sum: number, budget: number): [Player[], number] {
         // If we are within the budget, return
         if (budget >= sum) {
             return [currentTeam, sum]
@@ -64,7 +65,7 @@ self.onmessage = ({ data }: { data: { players: PlayerState, budget: number } }) 
         // Index of the most expensive player
         const index = prices.indexOf(max)
         // The most expensive player
-        const mostExpensivePlayer: Player = currentTeam[index]
+        const mostExpensivePlayer = currentTeam[index]
         // Next best player for that position
         const nextBestPlayer = players[positions[index]][indices[positions[index]]] || null
         // If no more best players, mark the position as maxed out
@@ -72,7 +73,7 @@ self.onmessage = ({ data }: { data: { players: PlayerState, budget: number } }) 
             currentTeam.map((player, i) => i === index ? { ...player, maxed: true } : player)
             return findTeamForBudget(currentTeam, sum, budget)
         }
-        // If the next best player does not improve our total value, leave them out
+        // If the next best player does not improve our total value, don't include them
         if (mostExpensivePlayer.value < nextBestPlayer.value) {
             // Increment to the next best player for the position
             indices[positions[index]] += 1;
