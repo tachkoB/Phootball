@@ -68,7 +68,7 @@ self.onmessage = ({ data }: { data: { players: PlayerState, budget: number } }) 
         const mostExpensivePlayer = currentTeam[index]
         // Next best player for that position
         const nextBestPlayer = players[positions[index]][indices[positions[index]]] || null
-        // If no more best players, mark the position as maxed out
+        // If no more best players for that position, mark the position as maxed out
         if (!nextBestPlayer) {
             currentTeam.map((player, i) => i === index ? { ...player, maxed: true } : player)
             return findTeamForBudget(currentTeam, sum, budget)
@@ -81,7 +81,7 @@ self.onmessage = ({ data }: { data: { players: PlayerState, budget: number } }) 
         }
 
         // Adjust the total sum of our team
-        sum += Number(nextBestPlayer.value - currentTeam[index].value)
+        sum += Number(nextBestPlayer.value - mostExpensivePlayer.value)
         // Replace the most expensive player with the next best player
         currentTeam = currentTeam.map((pl, i) => i === index ? nextBestPlayer : pl)
         // Increment the indices so that we know who the next best player for the position is
