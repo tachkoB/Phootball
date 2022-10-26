@@ -70,7 +70,7 @@ self.onmessage = ({ data }: { data: { players: PlayerState, budget: number } }) 
         const nextBestPlayer = players[positions[index]][indices[positions[index]]] || null
         // If no more best players for that position, mark the position as maxed out
         if (!nextBestPlayer) {
-            currentTeam.map((player, i) => i === index ? { ...player, maxed: true } : player)
+            currentTeam = currentTeam.map((player, i) => i === index ? { ...player, maxed: true } : player)
             return findTeamForBudget(currentTeam, sum, budget)
         }
         // If the next best player does not improve our total value, don't include them
