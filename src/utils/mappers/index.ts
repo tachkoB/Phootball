@@ -8,13 +8,9 @@ const MIDFIELD = ['CB', 'LCB', 'RCB', 'CDM', 'LDM', 'RDM', 'CM', 'LCM', 'RCM', '
 const ATTACK = ['CAM', 'LAM', 'RAM', 'LWF', 'RWF', 'CF', 'LCF', 'RCF']
 
 export const isGoalKeeper = (position: string) => position.toUpperCase() === 'GK'
-
 export const isDefender = (position: string) => DEFENSE.some(role => role === position)
-
 export const isMidfielder = (position: string) => MIDFIELD.some(role => role === position)
-
 export const isAttack = (position: string) => ATTACK.some(role => role === position)
-
 
 /**
  * Maps the players per positions
