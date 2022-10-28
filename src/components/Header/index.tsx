@@ -1,8 +1,9 @@
 // Styles
-import { Header, Link } from './styled'
+import { Header, Link, BigNav, SmallNav, Input } from './styled'
 
 // Images
 import Football from 'images/football.png'
+import Menu from 'images/menu.png'
 
 
 /**
@@ -19,7 +20,7 @@ const PageHeader = () => {
 
                 </div>
             </Link>
-            <nav>
+            <BigNav>
                 <ul>
                     <li>
                         <Link to={'/'} end>
@@ -32,7 +33,25 @@ const PageHeader = () => {
                         </Link>
                     </li>
                 </ul>
-            </nav>
+            </BigNav>
+            <SmallNav>
+                <label>
+                    <Input type={'checkbox'} />
+                    <img src={Menu} alt="" width={40} />
+                    <ul>
+                        <li>
+                            <Link to={'/'} end>
+                                Home
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={'/team-builder'} >
+                                Team builder
+                            </Link>
+                        </li>
+                    </ul>
+                </label>
+            </SmallNav>
         </Header >
     )
 }
