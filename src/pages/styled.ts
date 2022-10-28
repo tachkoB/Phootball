@@ -29,12 +29,24 @@ export const Section = styled.section`
     > h1 {
         font-size: 3rem;
         text-align: center;
+          
+        @media (max-width: 768px) {
+            font-size: 2rem;
+        } 
     }
 `
 export const Container = styled.div`
-    padding: 2rem;
+    margin-top: 2rem;
+    @media (min-width: 768px) {
+        padding: 2rem;
+        margin-top: 0;
+    } 
 `
 
 export const Input = styled(InputText)`
     width: 33%;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        } 
 `

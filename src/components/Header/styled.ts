@@ -39,10 +39,15 @@ export const SmallNav = styled.nav`
 
     > li {
       height: 4rem;
-      display: flex;
-      align-items: center;
       background-color: ${colors.primary};
       border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+      > a {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
   
